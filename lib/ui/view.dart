@@ -33,9 +33,9 @@ class ModelCache {
 typedef CachedModelBuilder<Model> = Model Function(Model Function() newModel);
 
 class View<Model extends BaseModel> extends StatefulWidget {
-  final Widget child;
+  final Widget? child;
 
-  final Widget Function(BuildContext context, Model value, Widget child)
+  final Widget Function(BuildContext context, Model value, Widget? child)
   builder;
 
   final Widget Function(BuildContext context)? loaderBuilder;
@@ -44,7 +44,7 @@ class View<Model extends BaseModel> extends StatefulWidget {
 
   final bool showLoader;
 
-  final void Function(Model model)? onModelReady;
+  final void Function(Model model)? onInit;
 
   final bool showError;
 
@@ -67,8 +67,8 @@ class View<Model extends BaseModel> extends StatefulWidget {
   const View({
     super.key,
     required this.builder,
-    required this.child,
-    this.onModelReady,
+    this.child,
+    this.onInit,
     this.cachedModelBuilder,
     this.cachedModel,
     this.loaderBuilder,
@@ -76,7 +76,7 @@ class View<Model extends BaseModel> extends StatefulWidget {
     this.showLoader = true,
     this.showError = true,
   }) : assert(
-         (cachedModel == null) != (cachedModelBuilder == null),
+         cachedModel == null && cachedModelBuilder == null,
          'You can only pass one of `cachedModel` and `cachedModelBuilder`',
        );
 
@@ -96,7 +96,7 @@ class _ViewState<Model extends BaseModel> extends State<View<Model>>
 
   Model _createModel() {
     final model = locate<Model>();
-    widget.onModelReady?.call(model);
+    widget.onInit?.call(model);
     return model;
   }
 

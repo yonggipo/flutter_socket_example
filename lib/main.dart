@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_socket_example/core/i18n/strings.dart';
 import 'package:flutter_socket_example/core/locator.dart';
-import 'package:flutter_socket_example/ui/chat_page.dart';
+import 'package:flutter_socket_example/core/logging.dart';
+import 'package:flutter_socket_example/ui/chat/chat_page.dart';
 
 void main() async {
   final _ = WidgetsFlutterBinding.ensureInitialized();
+  setLogging(enabled: true);
   runApp(const App());
 }
 

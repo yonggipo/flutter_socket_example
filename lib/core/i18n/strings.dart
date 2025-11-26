@@ -34,24 +34,21 @@ class Strings {
 class _Pages {
   const _Pages();
 
-  final news = const _PagesNews();
+  final chat = const _ChatPage();
 }
 
-class _PagesNews {
-  const _PagesNews();
+class _ChatPage {
+  const _ChatPage();
 
-  String get title => Intl.message('Hacker News');
-  String get topStories => Intl.message('Top Stories');
-  String get newStories => Intl.message('New Stories');
-
-  String get nextPage => Intl.message('Next page');
+  String get title => Intl.message('Socket Test');
 }
 
 class _Errors {
   const _Errors();
 
   String get failedLoading => Intl.message(
-    'Something went wrong while loading.\n press retry to try again.',
+    'Something went wrong while loading.\n'
+    'press retry to try again.',
   );
   String get tryAgain => Intl.message('Try again');
 }
