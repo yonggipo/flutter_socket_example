@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 // import '../services/index.dart';
 
 late GetIt _locate;
-T locate<T>() => _locate();
+T locate<T extends Object>() => _locate();
 
 abstract class Locator {
   static void init({GetIt? instance}) {
