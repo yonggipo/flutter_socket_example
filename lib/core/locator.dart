@@ -32,16 +32,16 @@ abstract class Locator {
             .build(),
       );
     });
+    _locate.registerLazySingleton<SocketRepository>(() => SocketRepository(locate<Socket>()));
   }
 
   static void _registerFactories() {
-    _locate.registerFactory(() => SocketRepository(locate<Socket>()));
   }
 
   static void _registerViewModels() {
     _locate.registerFactory(() => MessagesModel(locate<SocketRepository>()));
     _locate.registerFactory(() => ChatModel(locate<MessagesModel>()));
-    _locate.registerFactory(() => SocketStateModel());
+    _locate.registerFactory(() => SocketStateModel(locate<SocketRepository>()));
   }
 
   static void reassemble() {
